@@ -11,6 +11,12 @@ if __name__ == "__main__":
         grid[i].append(7)
     grid.append([7]*14)
 
+    block = t.Turtle()
+    block.penup() # 줄 삭제
+    block.speed(0)
+    block.shape("square")
+    block.color("red")
+
     for x in grid:
         print(x)
 

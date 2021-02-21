@@ -47,14 +47,15 @@ if __name__ == "__main__":
 
     while True:
         sc.update()
-        grid[brick.y][brick.x] = 0
-        brick.y += 1
-        grid[brick.y][brick.x] = brick.color
+        if grid[brick.y+1][brick.x] == 0:
+            grid[brick.y][brick.x] = 0
+            brick.y += 1
+            grid[brick.y][brick.x] = brick.color
     
         for x in grid:
             print(x)
         print()
         draw_grid(block, grid)
-        time.sleep(0.05)
+        time.sleep(0.5)
 
     sc.mainloop()

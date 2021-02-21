@@ -9,6 +9,7 @@ class Brick():
         self.color = r.randint(1,6)
 
 def draw_grid(black, grid):
+    block.clear()
     top = 250
     left = -150
     colors = ['black', 'red', 'blue', 'orange', 'yellow', 'green', 'purple', 'white']
@@ -22,6 +23,7 @@ def draw_grid(black, grid):
 
 if __name__ == "__main__":
     sc = t.Screen()
+    sc.tracer(False)
     sc.bgcolor("black")
     sc.setup(width=600, height=700)
     grid = [[0]*12 for _ in range(24)]
@@ -38,11 +40,13 @@ if __name__ == "__main__":
     block.speed(0)
     block.shape("square")
     block.color("red")
+    block.setundobuffer(None)
 
     brick = Brick()
     grid[brick.y][brick.x] = brick.color
 
     while True:
+        sc.update()
         grid[brick.y][brick.x] = 0
         brick.y += 1
         grid[brick.y][brick.x] = brick.color

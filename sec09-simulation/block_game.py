@@ -1,5 +1,6 @@
 import turtle as t
 import random as r
+import time
 
 class Brick():
     def __init__(self):
@@ -41,9 +42,15 @@ if __name__ == "__main__":
     brick = Brick()
     grid[brick.y][brick.x] = brick.color
 
-    draw_grid(block, grid)
-
-    for x in grid:
-        print(x)
+    while True:
+        grid[brick.y][brick.x] = 0
+        brick.y += 1
+        grid[brick.y][brick.x] = brick.color
+    
+        for x in grid:
+            print(x)
+        print()
+        draw_grid(block, grid)
+        time.sleep(0.05)
 
     sc.mainloop()

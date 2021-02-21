@@ -4,11 +4,13 @@ import random as r
 def draw_grid(black, grid):
     top = 250
     left = -150
+    colors = ['black', 'red', 'blue', 'orange', 'yellow', 'green', 'purple', 'white']
     for y in range(len(grid)):
         for x in range(len(grid[0])):
             sc_x = left+(x*22)
             sc_y = top-(y*22)
             block.goto(sc_x,sc_y)
+            block.color(colors[grid[y][x]]) # 벽을 7로 생성했으므로 colors[7] 색으로 나타남
             block.stamp()
 
 if __name__ == "__main__":

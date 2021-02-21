@@ -22,6 +22,9 @@ if __name__ == "__main__":
         grid[i].insert(0,7)
         grid[i].append(7)
     grid.append([7]*14)
+    for y in range(23, 20, -1):
+        for x in range(1, 13):
+            grid[y][x] = r.randint(1,6)
 
     block = t.Turtle()
     block.penup() # 줄 삭제

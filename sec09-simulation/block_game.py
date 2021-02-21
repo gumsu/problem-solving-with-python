@@ -1,6 +1,12 @@
 import turtle as t
 import random as r
 
+class Brick():
+    def __init__(self):
+        self.y = 0
+        self.x = 6
+        self.color = r.randint(1,6)
+
 def draw_grid(black, grid):
     top = 250
     left = -150
@@ -31,6 +37,9 @@ if __name__ == "__main__":
     block.speed(0)
     block.shape("square")
     block.color("red")
+
+    brick = Brick()
+    grid[brick.y][brick.x] = brick.color
 
     draw_grid(block, grid)
 

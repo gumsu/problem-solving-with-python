@@ -2,6 +2,9 @@ import turtle as t
 import random as r
 import time
 
+dy = [0, 0, 1, -1]
+dx = [1, -1, 0, 0]
+
 class Brick():
     def __init__(self):
         self.y = 0
@@ -29,6 +32,17 @@ def draw_grid(black, grid):
             block.goto(sc_x,sc_y)
             block.color(colors[grid[y][x]]) # 벽을 7로 생성했으므로 colors[7] 색으로 나타남
             block.stamp()
+
+def DFS(y, x, grid, color):
+    global check, blank
+    check[y][x] = 1
+    blank.append((y, x))
+    for i in range(4):
+        xx = x + dx[i]
+        yy = y + dy[i]
+        if 0 < xx < 13 and 0 < yy < 24:
+            if grid[yy][xx] == color and check[yy][xx] == 0:
+                DFS(yy, xx, grid, color)
 
 if __name__ == "__main__":
     sc = t.Screen()
@@ -65,12 +79,17 @@ if __name__ == "__main__":
             brick.y += 1
             grid[brick.y][brick.x] = brick.color
         else:
+            check = [[0]*14 for _ in range(25)]
+            blank = []
+            DFS(brick.y, brick.x, grid, brick.color)
+            print(len(blank))
+
             brick=Brick()
     
-        for x in grid:
-            print(x)
-        print()
+        # for x in grid:
+        #     print(x)
+        # print()
         draw_grid(block, grid)
-        time.sleep(0.5)
+        time.sleep(0.05)
 
     sc.mainloop()

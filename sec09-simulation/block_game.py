@@ -51,6 +51,8 @@ if __name__ == "__main__":
             grid[brick.y][brick.x] = 0
             brick.y += 1
             grid[brick.y][brick.x] = brick.color
+        else:
+            brick=Brick()
     
         for x in grid:
             print(x)

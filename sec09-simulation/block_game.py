@@ -7,6 +7,15 @@ class Brick():
         self.y = 0
         self.x = 6
         self.color = r.randint(1,6)
+    
+    def move_left(self, grid):
+        if grid[self.y][self.x-1] == 0:
+            grid[self.y][self.x] = 0
+            self.x-=1
+    def move_right(self, grid):
+        if grid[self.y][self.x+1] == 0:
+            grid[self.y][self.x] = 0
+            self.x+=1
 
 def draw_grid(black, grid):
     block.clear()
@@ -45,6 +54,10 @@ if __name__ == "__main__":
     brick = Brick()
     grid[brick.y][brick.x] = brick.color
 
+    sc.onkeypress(lambda: brick.move_left(grid), "Left")
+    sc.onkeypress(lambda: brick.move_right(grid), "Right")
+    sc.listen()
+    
     while True:
         sc.update()
         if grid[brick.y+1][brick.x] == 0:

@@ -47,6 +47,14 @@ def DFS(y, x, grid, color):
 def grid_update(grid, blank):
     for y, x in blank:
         grid[y][x] = 0
+    for y in range(23, 0, -1):
+        for x in range(1, 13):
+            if grid[y][x] == 0:
+                tmp_y = y
+                while grid[tmp_y-1][x] == 0 and tmp_y-1 > 0:
+                    tmp_y -= 1
+                grid[y][x] = grid[tmp_y-1][x]
+                grid[tmp_y-1][x] = 0
 
 if __name__ == "__main__":
     sc = t.Screen()

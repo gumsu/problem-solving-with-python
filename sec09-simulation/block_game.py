@@ -44,10 +44,20 @@ def DFS(y, x, grid, color):
             if grid[yy][xx] == color and check[yy][xx] == 0:
                 DFS(yy, xx, grid, color)
 
+# 블록이 가장 높이 쌓인 값
+def max_height(grid):
+    for y in range(1, 24):
+        for x in range(1, 23):
+            if grid[y][x] != 0: # 처음 블록 발견하면 리턴
+                return y
+
 def grid_update(grid, blank):
     for y, x in blank:
         grid[y][x] = 0
-    for y in range(23, 0, -1):
+
+    height = max_height(grid)
+
+    for y in range(23, height, -1):
         for x in range(1, 13):
             if grid[y][x] == 0:
                 tmp_y = y

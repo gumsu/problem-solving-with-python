@@ -44,6 +44,10 @@ def DFS(y, x, grid, color):
             if grid[yy][xx] == color and check[yy][xx] == 0:
                 DFS(yy, xx, grid, color)
 
+def grid_update(grid, blank):
+    for y, x in blank:
+        grid[y][x] = 0
+
 if __name__ == "__main__":
     sc = t.Screen()
     sc.tracer(False)
@@ -82,7 +86,9 @@ if __name__ == "__main__":
             check = [[0]*14 for _ in range(25)]
             blank = []
             DFS(brick.y, brick.x, grid, brick.color)
-            print(len(blank))
+            
+            if len(blank) >= 4:
+                grid_update(grid, blank)
 
             brick=Brick()
     

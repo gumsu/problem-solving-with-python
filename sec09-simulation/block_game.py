@@ -20,7 +20,7 @@ class Brick():
             grid[self.y][self.x] = 0
             self.x+=1
 
-def draw_grid(black, grid):
+def draw_grid(block, grid):
     block.clear()
     top = 250
     left = -150
@@ -50,8 +50,9 @@ def DFS(y, x, grid, color):
 # 블록이 가장 높이 쌓인 값
 def max_height(grid):
     for y in range(1, 24):
-        for x in range(1, 23):
+        for x in range(1, 13):
             if grid[y][x] != 0: # 처음 블록 발견하면 리턴
+                # print(y,x)
                 return y
 
 def grid_update(grid, blank):
@@ -68,6 +69,16 @@ def grid_update(grid, blank):
                     tmp_y -= 1
                 grid[y][x] = grid[tmp_y-1][x]
                 grid[tmp_y-1][x] = 0
+
+def game_over():
+    pen.up()
+    pen.goto(-120, 100)
+    pen.write("GAME OVER", font=("courier", 30))
+
+def you_win():
+    pen.up()
+    pen.goto(-100, 100)
+    pen.write("YOU WIN", font=("courier", 30))
 
 if __name__ == "__main__":
     sc = t.Screen()
@@ -118,11 +129,23 @@ if __name__ == "__main__":
             if len(blank) >= 4:
                 grid_update(grid, blank)
 
+            height = max_height(grid)
+
+            if height <= 15:
+                game_over()
+                break
+
+            elif height >= 22:
+                draw_grid(block, grid)
+                you_win()
+                break
+
             brick=Brick()
     
         # for x in grid:
         #     print(x)
         # print()
+
         draw_grid(block, grid)
         time.sleep(0.05)
 

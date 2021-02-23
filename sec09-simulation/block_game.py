@@ -30,7 +30,10 @@ def draw_grid(black, grid):
             sc_x = left+(x*22)
             sc_y = top-(y*22)
             block.goto(sc_x,sc_y)
-            block.color(colors[grid[y][x]]) # 벽을 7로 생성했으므로 colors[7] 색으로 나타남
+            if y == 15 and grid[y][x] == 7:
+                block.color("red")
+            else:
+                block.color(colors[grid[y][x]]) # 벽을 7로 생성했으므로 colors[7] 색으로 나타남
             block.stamp()
 
 def DFS(y, x, grid, color):

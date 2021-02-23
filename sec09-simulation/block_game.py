@@ -89,6 +89,13 @@ if __name__ == "__main__":
 
     brick = Brick()
     grid[brick.y][brick.x] = brick.color
+    draw_grid(block, grid)
+
+    pen = t.Turtle()
+    pen.ht()
+    pen.goto(-80, 290)
+    pen.color("white")
+    pen.write("Block Game", font=('courier', 20, 'normal'))
 
     sc.onkeypress(lambda: brick.move_left(grid), "Left")
     sc.onkeypress(lambda: brick.move_right(grid), "Right")
